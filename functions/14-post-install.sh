@@ -3,6 +3,13 @@
 set -uo pipefail
 source "${DOTFILES_ROOT}/helpers/common.sh"
 
+sudoers_file="/etc/sudoers.d/99-dotfiles-install-temp"
+if [[ -f "$sudoers_file" ]]; then
+  sudo rm -f "$sudoers_file"
+  echo "  [DONE] Removed temporary pacman NOPASSWD rule (00-sudo-nopasswd.sh) -"
+  echo "  sudo now requires a password for pacman again, same as normal."
+fi
+
 echo ""
 echo "  Install complete. Nothing further requires interaction from here."
 echo ""
