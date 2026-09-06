@@ -20,6 +20,23 @@ if [[ -d "$nvim_config_dir" && -n "$(ls -A "$nvim_config_dir" 2>/dev/null)" ]]; 
 fi
 
 echo "  Bootstrapping 0xhealer/nvim-config..."
-curl -fsSL https://raw.githubusercontent.com/0xhealer/nvim-config/main/bootstrap.sh | bash
+if ! curl -fsSL https://raw.githubusercontent.com/0xhealer/nvim-config/main/bootstrap.sh | bash; then
+  # Known issue: bootstrap.sh downloads install.sh without the executable
+  # bit set (or the download method didn't preserve it), causing
+  # "Permission denied" when it tries to run it. Not something in our own
+  # script - fix the permission ourselves and run it directly rather than
+  # depending on their installer to have set it.
+  download_dir="${HOME}/.local/share/nvim-config"
+  if [[ -f "${download_dir}/install.sh" ]]; then
+    echo "  bootstrap.sh's own execution failed (likely a missing +x bit on"
+    echo "  the downloaded install.sh) - fixing that and running it directly."
+    chmod +x "${download_dir}/install.sh"
+    (cd "$download_dir" && ./install.sh)
+  else
+    echo "  ERROR: bootstrap failed and no install.sh found at ${download_dir}" >&2
+    echo "  to retry with." >&2
+    exit 1
+  fi
+fi
 
 echo "  [DONE] nvim-config installed."
