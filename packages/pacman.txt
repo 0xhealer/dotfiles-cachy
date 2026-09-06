@@ -1,0 +1,54 @@
+# Base packages - official pacman repos only. AUR-only packages
+# (vscode) live in packages/aur.txt instead.
+
+# Compositor / shell (install only - not configured, per instruction)
+niri
+noctalia
+
+# Terminals
+kitty
+alacritty
+
+# Editor
+neovim
+
+# Browser
+firefox
+
+# Virtualization
+qemu-desktop
+libvirt
+virt-manager
+virt-viewer
+edk2-ovmf
+bridge-utils
+
+# Networking / containers
+tailscale
+docker
+docker-compose
+
+# Media
+handbrake
+
+# Theming
+matugen
+
+# Shell
+zsh
+
+# CLI tools
+ripgrep
+fd
+fzf
+bat
+eza
+zoxide
+jq
+wget
+curl
+git
+github-cli
+lazygit
+unzip
+base-devel

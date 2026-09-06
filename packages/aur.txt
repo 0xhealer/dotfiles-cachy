@@ -1,0 +1,4 @@
+# AUR-only packages, installed via yay after 04-aur-helper.sh bootstraps
+# it. Official Arch repos don't carry vscode's actual Microsoft build.
+
+visual-studio-code-bin
