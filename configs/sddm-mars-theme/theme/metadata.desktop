@@ -1,0 +1,14 @@
+[SddmGreeterTheme]
+Name=mars-inspired
+Description=Original dark/rust-orange SDDM theme, in the general style direction of Sweet Mars (rounded glowing panel, warm accent) - not a copy of that theme's actual files
+Author=healer
+Copyright=(c) 2026, private
+License=Private - not for redistribution
+Type=sddm
+Version=1.0
+Website=
+Screenshot=
+MainScript=Main.qml
+ConfigFile=theme.conf
+TranslationsDirectory=translations
+SddmGreeterMinimumVersion=0.19
