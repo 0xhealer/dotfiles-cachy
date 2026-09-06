@@ -2,8 +2,7 @@
 # -----------------------------------------------------------------------------
 # 06-blackarch.sh
 # Registers the official BlackArch repository via strap.sh (not the
-# BlackArch distro itself), then installs burpsuite from it - the one tool
-# actually requested from that repo this time.
+# BlackArch distro itself), then installs burpsuite from it.
 # -----------------------------------------------------------------------------
 set -euo pipefail
 source "${DOTFILES_ROOT}/helpers/common.sh"

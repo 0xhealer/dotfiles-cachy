@@ -10,5 +10,4 @@ fi
 
 sudo systemctl enable --now tailscaled.service
 echo "  [DONE] tailscaled running. Run 'sudo tailscale up' yourself to"
-echo "  actually log in and join a tailnet - that step needs your own"
-echo "  auth (browser login or key), so it isn't automated here."
+echo "  actually log in and join a tailnet - needs your own auth."

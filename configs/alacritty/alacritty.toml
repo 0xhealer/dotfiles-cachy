@@ -1,7 +1,6 @@
 # alacritty.toml
-# Alacritty has no native blur support at all (unlike kitty, which at
-# least has an opacity knob) - blur here is entirely a Niri-side window
-# rule on top of this opacity, same caveat as kitty.conf.
+# No native blur support in alacritty regardless - opacity only, same
+# caveat as kitty.conf about blur being a Niri window-rule.
 
 [window]
 opacity = 0.85

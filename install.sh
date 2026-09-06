@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 # -----------------------------------------------------------------------------
 # install.sh
-# Fully non-interactive after the one initial sudo password prompt. Runs
-# every functions/NN-name.sh file in numeric order, or only matching ones
-# if names are passed: ./install.sh docker tailscale
+# Fully non-interactive after the one initial sudo password prompt.
 # -----------------------------------------------------------------------------
 set -euo pipefail
 

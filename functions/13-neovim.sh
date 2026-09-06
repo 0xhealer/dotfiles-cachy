@@ -2,9 +2,9 @@
 # -----------------------------------------------------------------------------
 # 13-neovim.sh
 # Installs github.com/0xhealer/nvim-config via its own official bootstrap
-# script (public, MIT-licensed) rather than hand-copying its files - it
-# manages its own plugin lockfile and installer. rose-pine is already its
-# default colorscheme; transparency is already built into its ui.lua.
+# script. Includes a fallback for a known bug in that installer (fixed at
+# the source since, per 0xhealer's own repo) where the downloaded
+# install.sh lacked the executable bit.
 # -----------------------------------------------------------------------------
 set -euo pipefail
 source "${DOTFILES_ROOT}/helpers/common.sh"
@@ -21,20 +21,14 @@ fi
 
 echo "  Bootstrapping 0xhealer/nvim-config..."
 if ! curl -fsSL https://raw.githubusercontent.com/0xhealer/nvim-config/main/bootstrap.sh | bash; then
-  # Known issue: bootstrap.sh downloads install.sh without the executable
-  # bit set (or the download method didn't preserve it), causing
-  # "Permission denied" when it tries to run it. Not something in our own
-  # script - fix the permission ourselves and run it directly rather than
-  # depending on their installer to have set it.
   download_dir="${HOME}/.local/share/nvim-config"
   if [[ -f "${download_dir}/install.sh" ]]; then
-    echo "  bootstrap.sh's own execution failed (likely a missing +x bit on"
-    echo "  the downloaded install.sh) - fixing that and running it directly."
+    echo "  bootstrap.sh's own execution failed - fixing the executable bit"
+    echo "  and running it directly as a fallback."
     chmod +x "${download_dir}/install.sh"
     (cd "$download_dir" && ./install.sh)
   else
-    echo "  ERROR: bootstrap failed and no install.sh found at ${download_dir}" >&2
-    echo "  to retry with." >&2
+    echo "  ERROR: bootstrap failed and no install.sh found at ${download_dir}." >&2
     exit 1
   fi
 fi

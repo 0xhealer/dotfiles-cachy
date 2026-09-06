@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 # -----------------------------------------------------------------------------
 # 09-zsh.sh
-# Sets zsh as the login shell and installs oh-my-zsh unattended - the
-# official installer supports CHSH=no RUNZSH=no KEEP_ZSHRC=yes plus
-# --unattended specifically to avoid any interactive prompts (it would
-# otherwise ask about changing shell and launching zsh immediately).
+# Sets zsh as the login shell, installs oh-my-zsh unattended, and
+# explicitly guarantees ZSH_THEME="robbyrussell" - oh-my-zsh's own
+# creator-authored default theme, not powerlevel10k/p9k.
 # -----------------------------------------------------------------------------
 set -euo pipefail
 source "${DOTFILES_ROOT}/helpers/common.sh"
@@ -22,7 +21,7 @@ fi
 
 if [[ "$SHELL" != "$zsh_path" ]]; then
   sudo chsh -s "$zsh_path" "$USER"
-  echo "  [DONE] zsh set as login shell (sudo chsh, no separate password prompt)."
+  echo "  [DONE] zsh set as login shell."
 fi
 
 if [[ ! -d "${HOME}/.oh-my-zsh" ]]; then
@@ -31,4 +30,16 @@ if [[ ! -d "${HOME}/.oh-my-zsh" ]]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 else
   echo "  oh-my-zsh already installed."
+fi
+
+zshrc="${HOME}/.zshrc"
+if [[ -f "$zshrc" ]]; then
+  if grep -q '^ZSH_THEME=' "$zshrc"; then
+    sed -i 's/^ZSH_THEME=.*/ZSH_THEME="robbyrussell"/' "$zshrc"
+  else
+    echo 'ZSH_THEME="robbyrussell"' >> "$zshrc"
+  fi
+  echo "  [DONE] ZSH_THEME set to robbyrussell (oh-my-zsh's default)."
+else
+  echo "  WARNING: ~/.zshrc not found after install." >&2
 fi

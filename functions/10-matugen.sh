@@ -11,5 +11,4 @@ copy_dotfile_item "${DOTFILES_ROOT}/configs/matugen" "${HOME}/.config/matugen"
 
 echo "  matugen installed and configured for kitty + alacritty."
 echo "  Run 'matugen image /path/to/wallpaper.jpg' manually to generate a"
-echo "  palette - no wallpaper daemon or wallpaper-setting is wired up"
-echo "  here, since Niri/Noctalia config is yours to do."
+echo "  palette - no wallpaper daemon wired up, Niri/Noctalia config is yours."
