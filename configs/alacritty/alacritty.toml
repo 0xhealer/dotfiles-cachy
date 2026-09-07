@@ -1,15 +1,6 @@
 # alacritty.toml
 # No native blur support in alacritty regardless - opacity only, same
 # caveat as kitty.conf about blur being a Niri window-rule.
-#
-# Alacritty IS listed as one of Noctalia's Built-In Templates (2026
-# screenshot), but its exact generated file path wasn't visible/confirmed
-# the way kitty's and fuzzel's were - only those two showed a path in a
-# tooltip. Left pointing at the same colors.toml import as before rather
-# than guessing Noctalia's actual output path wrong. Confirm the real path
-# yourself (hover the Alacritty entry under Settings -> Templates ->
-# Built-In) and update the import path below once you have it, if you
-# enable Alacritty theming there.
 
 [window]
 opacity = 0.85

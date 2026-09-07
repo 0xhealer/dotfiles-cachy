@@ -1,77 +1,10 @@
-// config.kdl - keybindings only, styled after Omarchy's default keybind
-// philosophy: SUPER as the one mod key, vim-style hjkl for focus AND
-// window movement (SUPER+hjkl focus, SUPER+SHIFT+hjkl move), SUPER+Return
-// terminal, SUPER+D launcher, SUPER+Q close, SUPER+K live keybindings
-// cheatsheet, numbered workspaces. These are Niri's own real actions
-// (confirmed via niri's official docs/wiki), mapped to match Omarchy's
-// mnemonic pattern - not copied from any Omarchy config file, which is
-// Hyprland syntax and wouldn't be valid here anyway.
-//
-// Deliberately keybindings only - no monitor/input/layout/animation
-// sections, per instruction not to configure the rest of Niri/Noctalia.
-// Merge this binds{} block into your own config.kdl yourself.
+include "./cfg/animation.kdl"
+include "./cfg/autostart.kdl"
+include "./cfg/keybinds.kdl"
+include "./cfg/input.kdl"
+include "./cfg/display.kdl"
+include "./cfg/layout.kdl"
+include "./cfg/rules.kdl"
+include "./cfg/misc.kdl"
 
-binds {
-    Mod+Return { spawn "kitty"; }
-    Mod+D { spawn "fuzzel"; }
-    Mod+Q { close-window; }
-    Mod+Shift+E { quit; }
-    Mod+F { fullscreen-window; }
-    Mod+Shift+Space { toggle-window-floating; }
-
-    // Vim-style focus movement (Omarchy's own hjkl pattern)
-    Mod+H { focus-column-left; }
-    Mod+L { focus-column-right; }
-    Mod+J { focus-window-down; }
-    Mod+K { focus-window-up; }
-
-    // Vim-style window/column MOVEMENT (Omarchy: SUPER+SHIFT+hjkl swaps)
-    Mod+Shift+H { move-column-left; }
-    Mod+Shift+L { move-column-right; }
-    Mod+Shift+J { move-window-down; }
-    Mod+Shift+K { move-window-up; }
-
-    // Workspaces 1-10 (0 = workspace 10)
-    Mod+1 { focus-workspace 1; }
-    Mod+2 { focus-workspace 2; }
-    Mod+3 { focus-workspace 3; }
-    Mod+4 { focus-workspace 4; }
-    Mod+5 { focus-workspace 5; }
-    Mod+6 { focus-workspace 6; }
-    Mod+7 { focus-workspace 7; }
-    Mod+8 { focus-workspace 8; }
-    Mod+9 { focus-workspace 9; }
-    Mod+0 { focus-workspace 10; }
-    Mod+Shift+1 { move-column-to-workspace 1; }
-    Mod+Shift+2 { move-column-to-workspace 2; }
-    Mod+Shift+3 { move-column-to-workspace 3; }
-    Mod+Shift+4 { move-column-to-workspace 4; }
-    Mod+Shift+5 { move-column-to-workspace 5; }
-    Mod+Shift+6 { move-column-to-workspace 6; }
-    Mod+Shift+7 { move-column-to-workspace 7; }
-    Mod+Shift+8 { move-column-to-workspace 8; }
-    Mod+Shift+9 { move-column-to-workspace 9; }
-    Mod+Shift+0 { move-column-to-workspace 10; }
-    Mod+Page_Down { focus-workspace-down; }
-    Mod+Page_Up { focus-workspace-up; }
-
-    // Screenshots (Niri's own built-in tool, no extra package needed)
-    Print { screenshot; }
-    Mod+Print { screenshot-screen; }
-    Ctrl+Print { screenshot-window; }
-
-    // Media keys
-    XF86AudioRaiseVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+"; }
-    XF86AudioLowerVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
-    XF86AudioMute { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-    XF86MonBrightnessUp { spawn "brightnessctl" "set" "5%+"; }
-    XF86MonBrightnessDown { spawn "brightnessctl" "set" "5%-"; }
-    XF86AudioPlay { spawn "playerctl" "play-pause"; }
-    XF86AudioNext { spawn "playerctl" "next"; }
-    XF86AudioPrev { spawn "playerctl" "previous"; }
-
-    // Omarchy-style: SUPER+K opens a live keybindings cheatsheet, reading
-    // this same binds{} block rather than a separately maintained list -
-    // see scripts/show-keybinds.sh.
-    Mod+K { spawn "bash" "-c" "$HOME/.local/bin/show-keybinds.sh"; }
-}
+include "noctalia.kdl"

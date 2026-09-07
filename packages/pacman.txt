@@ -31,6 +31,9 @@ docker-compose
 # Media
 handbrake
 
+# Theming
+matugen
+
 # Shell
 zsh
 
@@ -50,4 +53,3 @@ lazygit
 unzip
 base-devel
 fastfetch
-fuzzel
